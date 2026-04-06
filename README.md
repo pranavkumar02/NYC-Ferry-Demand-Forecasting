@@ -18,7 +18,6 @@ The workflow follows a production-style structure:
 
 ## 📊 Data
 The raw dataset contains granular NYC Ferry ridership records with route-, stop-, direction-, and time-level detail.
-
 For modeling:
 - Data is **aggregated to daily total ridership**
 - This produces a stable system-level time series suitable for forecasting
@@ -99,8 +98,6 @@ Ensemble models improve MAE by **~25%** over the naïve baseline, indicating mea
 ## 📁 Project Structure
 
 Python, Pandas, Scikit-learn, XGBoost, Tableau, VS Code
-├── data/
-│ └── ml_features_v1.csv
 ├── notebooks/
 │ ├── 01_eda_nyc_ferry.ipynb
 │ ├── 02_feature_engineering.ipynb
@@ -109,6 +106,14 @@ Python, Pandas, Scikit-learn, XGBoost, Tableau, VS Code
 
 ---
 
+## 📦 Data Availability
+
+The dataset is excluded from this repository due to size constraints.
+It can be obtained from https://data.cityofnewyork.us/Transportation/NYC-Ferry-Ridership/t5n6-gx8c/about_data or provided upon request.
+
+---
+
 ## ▶️ How to Run
 ```bash
 pip install pandas numpy scikit-learn
+
