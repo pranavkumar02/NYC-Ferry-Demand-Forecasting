@@ -47,11 +47,35 @@ def evaluate_model(y_test,y_pred):
     print(f"R² Score: {r2:.4f}")
 
 
-def feature_importance(model,X_train):
-    import plotly.express as px
-    importance = model.feature_importances_
-    feature_names = X_train.columns
-    importance_df = pd.DataFrame({"Feature": feature_names, "Importance": importance})
-    importance_df = importance_df.sort_values("Importance", ascending=False)
-    fig = px.bar(importance_df, x="Importance", y="Feature", orientation="h", title="Feature Importance")
-    fig.show()
+
+def feature_importance(model, X_train, threshold=0.01):
+ import plotly.express as px
+ import plotly.io as pio
+
+ # Ensure GitHub rendering
+ pio.renderers.default = "png"
+
+ importance = model.feature_importances_
+ feature_names = X_train.columns
+
+ importance_df = pd.DataFrame({
+     "Feature": feature_names,
+     "Importance": importance
+    })
+
+ # 🔥 Filter features above threshold (1%)
+ importance_df = importance_df[importance_df["Importance"] >= threshold]
+
+ # Sort after filtering
+ importance_df = importance_df.sort_values("Importance", ascending=True)
+
+ fig = px.bar(
+     importance_df,
+     x="Importance",
+     y="Feature",
+     orientation="h",
+     text_auto=".2%",
+     title="Feature Importance (>1%)"
+    )
+
+ return  fig.show("png")  # force static for GitHub
